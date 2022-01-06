@@ -1,0 +1,46 @@
+<h1>Show Interval</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.interval_show_path(@socket, :show, @interval)}>
+    <.live_component
+      module={PomodexWeb.IntervalLive.FormComponent}
+      id={@interval.id}
+      title={@page_title}
+      action={@live_action}
+      interval={@interval}
+      return_to={Routes.interval_show_path(@socket, :show, @interval)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Position:</strong>
+    <%= @interval.position %>
+  </li>
+
+  <li>
+    <strong>Seconds:</strong>
+    <%= @interval.seconds %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @interval.name %>
+  </li>
+
+  <li>
+    <strong>Desc:</strong>
+    <%= @interval.desc %>
+  </li>
+
+  <li>
+    <strong>Hotkey:</strong>
+    <%= @interval.hotkey %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.interval_show_path(@socket, :edit, @interval), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.interval_index_path(@socket, :index) %></span>

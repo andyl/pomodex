@@ -1,0 +1,47 @@
+<h1>Listing Intervals</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.interval_index_path(@socket, :index)}>
+    <.live_component
+      module={PomodexWeb.IntervalLive.FormComponent}
+      id={@interval.id || :new}
+      title={@page_title}
+      action={@live_action}
+      interval={@interval}
+      return_to={Routes.interval_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Seconds</th>
+      <th>Name</th>
+      <th>Desc</th>
+      <th>Hotkey</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="intervals">
+    <%= for interval <- @intervals do %>
+      <tr id={"interval-#{interval.id}"}>
+        <td><%= interval.position %></td>
+        <td><%= interval.seconds %></td>
+        <td><%= interval.name %></td>
+        <td><%= interval.desc %></td>
+        <td><%= interval.hotkey %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.interval_show_path(@socket, :show, interval) %></span>
+          <span><%= live_patch "Edit", to: Routes.interval_index_path(@socket, :edit, interval) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: interval.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Interval", to: Routes.interval_index_path(@socket, :new) %></span>

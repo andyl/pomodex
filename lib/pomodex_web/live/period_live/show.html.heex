@@ -1,0 +1,56 @@
+<h1>Show Period</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.period_show_path(@socket, :show, @period)}>
+    <.live_component
+      module={PomodexWeb.PeriodLive.FormComponent}
+      id={@period.id}
+      title={@page_title}
+      action={@live_action}
+      period={@period}
+      return_to={Routes.period_show_path(@socket, :show, @period)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @period.title %>
+  </li>
+
+  <li>
+    <strong>Seconds:</strong>
+    <%= @period.seconds %>
+  </li>
+
+  <li>
+    <strong>Start at:</strong>
+    <%= @period.start_at %>
+  </li>
+
+  <li>
+    <strong>End at:</strong>
+    <%= @period.end_at %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @period.status %>
+  </li>
+
+  <li>
+    <strong>Note:</strong>
+    <%= @period.note %>
+  </li>
+
+  <li>
+    <strong>Tags:</strong>
+    <%= @period.tags %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.period_show_path(@socket, :edit, @period), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.period_index_path(@socket, :index) %></span>

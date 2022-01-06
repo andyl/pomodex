@@ -1,0 +1,51 @@
+<h1>Listing Period</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.period_index_path(@socket, :index)}>
+    <.live_component
+      module={PomodexWeb.PeriodLive.FormComponent}
+      id={@period.id || :new}
+      title={@page_title}
+      action={@live_action}
+      period={@period}
+      return_to={Routes.period_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Seconds</th>
+      <th>Start at</th>
+      <th>End at</th>
+      <th>Status</th>
+      <th>Note</th>
+      <th>Tags</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="period">
+    <%= for period <- @period_collection do %>
+      <tr id={"period-#{period.id}"}>
+        <td><%= period.title %></td>
+        <td><%= period.seconds %></td>
+        <td><%= period.start_at %></td>
+        <td><%= period.end_at %></td>
+        <td><%= period.status %></td>
+        <td><%= period.note %></td>
+        <td><%= period.tags %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.period_show_path(@socket, :show, period) %></span>
+          <span><%= live_patch "Edit", to: Routes.period_index_path(@socket, :edit, period) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: period.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Period", to: Routes.period_index_path(@socket, :new) %></span>

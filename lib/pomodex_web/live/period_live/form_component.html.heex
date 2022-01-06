@@ -1,0 +1,44 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="period-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :title %>
+    <%= text_input f, :title %>
+    <%= error_tag f, :title %>
+  
+    <%= label f, :seconds %>
+    <%= number_input f, :seconds %>
+    <%= error_tag f, :seconds %>
+  
+    <%= label f, :start_at %>
+    <%= datetime_select f, :start_at %>
+    <%= error_tag f, :start_at %>
+  
+    <%= label f, :end_at %>
+    <%= datetime_select f, :end_at %>
+    <%= error_tag f, :end_at %>
+  
+    <%= label f, :status %>
+    <%= text_input f, :status %>
+    <%= error_tag f, :status %>
+  
+    <%= label f, :note %>
+    <%= text_input f, :note %>
+    <%= error_tag f, :note %>
+  
+    <%= label f, :tags %>
+    <%= text_input f, :tags %>
+    <%= error_tag f, :tags %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>
