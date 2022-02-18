@@ -1,4 +1,4 @@
-defmodule PompdexWeb.Sockets.CounterHandler do
+defmodule PomodexWeb.Sockets.CounterHandler do
   @behaviour :cowboy_websocket
 
   # ----- Setup & Teardown Callbacks -----

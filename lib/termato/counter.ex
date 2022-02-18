@@ -18,11 +18,7 @@ defmodule Termato.Counter do
   end
 
   def start_link(mins) when is_integer(mins) do
-    with pid <- Agent.start_link(fn -> mins * 60 end, name: @process_name)
-    do
-      :timer.apply_interval(1000, @process_name, :decrement, [])
-      pid
-    end
+    Agent.start_link(fn -> mins * 60 end, name: @process_name)
   end
 
   def start_link(_args) do

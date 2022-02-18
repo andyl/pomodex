@@ -1,4 +1,4 @@
-defmodule PompdexWeb.Sockets.EchoHandler do
+defmodule PomodexWeb.Sockets.EchoHandler do
   @moduledoc """
   Simple Websocket handler that echos back any data it receives
   """

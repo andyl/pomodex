@@ -8,6 +8,7 @@ defmodule Pomodex.Application do
     children = [
       {Termato.Counter, []},
       {Termato.SockPidstore, []},
+      {Termato.Timer, []},
       Pomodex.Repo,
       PomodexWeb.Telemetry,
       {Phoenix.PubSub, name: Pomodex.PubSub},

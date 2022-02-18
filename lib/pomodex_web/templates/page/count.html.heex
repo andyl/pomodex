@@ -48,16 +48,16 @@
     <table class="menu">
       <tr>
         <td>
-          <a href="/set_mins/25?redirect=live">25 mins</a><br/>tomato task 
+          <a href="/base/set_mins/25?redirect=live">25 mins</a><br/>tomato task 
         </td>
         <td>
-          <a href="/set_mins/15?redirect=live">15 mins</a><br/>long break - after 4 tasks
+          <a href="/base/set_mins/15?redirect=live">15 mins</a><br/>long break - after 4 tasks
         </td>
         <td>
-          <a href="/set_mins/5?redirect=live">5 mins</a><br/>short break - between tasks
+          <a href="/base/set_mins/5?redirect=live">5 mins</a><br/>short break - between tasks
         </td>
         <td>
-          <a href="/set_secs/5?redirect=live">5 secs</a><br/>test
+          <a href="/base/set_secs/5?redirect=live">5 secs</a><br/>test
         </td>
       </tr>
     </table>
@@ -77,7 +77,7 @@
     <script>
         console.log("JAVASCRIPT INIT"); 
         const setupWs = () => {
-            let ws = new WebSocket("ws://" + window.location.host + "/sock");
+            let ws = new WebSocket("ws://" + window.location.host + "/sock/counter");
             var heartbeat;
             ws.addEventListener("open", () => {
                     console.log("WEBSOCK CONNECTED");

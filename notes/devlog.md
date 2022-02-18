@@ -49,11 +49,14 @@ Learnings
 - [x] Get Termato working 
 - [x] Update Ansible to auto-install hex, rebar, ex-server, phx-new
 - [x] Add Static Web Page 
+- [x] Push to Github
+- [x] Get counter working on static web page 
 
 ## Next Steps
 
+- [ ] Static page: Get link redirects working 
+- [ ] Static page: Get history working 
 - [ ] Get client working  
-- [ ] Get history working 
 
 - [ ] Build Auth 
 
@@ -62,6 +65,5 @@ Learnings
 - [ ] Get tests for counter working 
 - [ ] Remove V1
 - [ ] Remove termato 
-- [ ] Push to Github
 
 
