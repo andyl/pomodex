@@ -1,7 +1,7 @@
 defmodule PomodexWeb.UserRegistrationControllerTest do
   use PomodexWeb.ConnCase, async: true
 
-  import Pomodex.AuthFixtures
+  import Pomodex.AccountsFixtures
 
   describe "GET /users/register" do
     test "renders registration page", %{conn: conn} do

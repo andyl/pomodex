@@ -1,0 +1,50 @@
+#!/usr/bin/env elixir
+
+Mix.install([
+  {:gun, "~> 2.0.0-rc.2"}
+])
+
+defmodule SockClient do
+  @host 'localhost'
+  @port 4000
+  @path '/sock/echo'
+
+  use GenServer
+  require Logger
+
+  def start_link(args) do
+    GenServer.start_link(__MODULE__, args)
+  end
+
+  @impl true
+  def init(_args) do
+    connect_opts = %{
+      connect_timeout: :timer.minutes(1),
+      retry: 10,
+      retry_timeout: 100,
+      protocols: [:http]
+    }
+    with {:ok, gun}      <- :gun.open(@host, @port, connect_opts),
+         {:ok, protocol} <- :gun.await_up(gun),
+         stream          <- :gun.ws_upgrade(gun, @path, []) 
+    do
+      :ok = :gun.ws_send(gun, stream, {:text, "Hello Server!"})
+      state = %{gun: gun, protocol: protocol, stream: stream}
+      {:ok, state}
+    end
+  end
+
+  @impl true
+  def handle_info({:gun_ws, gun, stream, {:text, data}}, %{gun: gun, stream: stream} = state) do
+    Logger.info ["Message from server ", data]
+    {:noreply, state}
+  end
+end
+
+IO.puts "START"
+
+SockClient.start_link([])
+
+Process.sleep(1000)
+
+IO.puts "DONE"

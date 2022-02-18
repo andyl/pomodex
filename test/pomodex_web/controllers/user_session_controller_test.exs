@@ -1,7 +1,7 @@
 defmodule PomodexWeb.UserSessionControllerTest do
   use PomodexWeb.ConnCase, async: true
 
-  import Pomodex.AuthFixtures
+  import Pomodex.AccountsFixtures
 
   setup do
     %{user: user_fixture()}

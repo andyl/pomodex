@@ -18,11 +18,11 @@ config :pomodex, Pomodex.Repo,
 config :pomodex, PomodexWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 4000],
+  http: [ip: {0, 0, 0, 0}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "4WyLazSbCcv7toe3u0pBPkWng1+QZi4W5DRNbMNf4KcznK+UpwkAtR5t/9ptelw0",
+  secret_key_base: "mo6hIMfSP7FtUJJLUFHW3E3A5qvglv9aZmHsb1M9T3Yo7Beh9GHovS+KPe5toaa2",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}

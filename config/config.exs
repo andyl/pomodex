@@ -15,7 +15,17 @@ config :pomodex, PomodexWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [view: PomodexWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Pomodex.PubSub,
-  live_view: [signing_salt: "LjA3L0v0"]
+  http: [
+    dispatch: [
+      {:_,
+       [
+         {"/sock/echo", PomodexWeb.Sockets.EchoHandler, []},
+         {"/sock/counter", PomodexWeb.Sockets.CounterHandler, []},
+         {:_, Phoenix.Endpoint.Cowboy2Handler, {PomodexWeb.Endpoint, []}}
+       ]}
+    ]
+  ],
+  live_view: [signing_salt: "/R+v3lze"]
 
 # Configures the mailer
 #

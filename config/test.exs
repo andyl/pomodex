@@ -20,7 +20,7 @@ config :pomodex, Pomodex.Repo,
 # you can enable the server option below.
 config :pomodex, PomodexWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "voRYl/6Xvw4yQYm1kXwgN1ZgtGdihrMFzRHxS34ICpzUnk2uxIS20DtgWAPvbdGd",
+  secret_key_base: "b3RoVw19Z/yCJFLpdg/9xAE5HVpVa1lMU6lPeKQ21lSMgl/ZuTTtxCdKQ0NBv40N",
   server: false
 
 # In test we don't send emails.

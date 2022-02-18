@@ -20,32 +20,23 @@ defmodule PomodexWeb.Router do
   scope "/", PomodexWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
-    
-    live "/u", UserLive.Index, :index
-    live "/u/new", UserLive.Index, :new
-    live "/u/:id/edit", UserLive.Index, :edit
-
-    live "/u/:id", UserLive.Show, :show
-    live "/u/:id/show/edit", UserLive.Show, :edit
-
-    live "/intervals", IntervalLive.Index, :index
-    live "/intervals/new", IntervalLive.Index, :new
-    live "/intervals/:id/edit", IntervalLive.Index, :edit
-
-    live "/intervals/:id", IntervalLive.Show, :show
-    live "/intervals/:id/show/edit", IntervalLive.Show, :edit
-
-
-    live "/period", PeriodLive.Index, :index
-    live "/period/new", PeriodLive.Index, :new
-    live "/period/:id/edit", PeriodLive.Index, :edit
-
-    live "/period/:id", PeriodLive.Show, :show
-    live "/period/:id/show/edit", PeriodLive.Show, :edit
-
-
+    get "/",      PageController, :index
+    get "/count", PageController, :count
   end
+
+  scope "/base", PomodexWeb do
+    pipe_through :browser
+
+    get "/",               BaseController, :secs
+    get "/raw",            BaseController, :secs
+    get "/mins",           BaseController, :mins
+    get "/secs",           BaseController, :secs
+    get "/secs_to_s",      BaseController, :secs_to_s
+    get "/decrement",      BaseController, :decrement
+    get "/set_secs/:secs", BaseController, :set_secs
+    get "/set_mins/:mins", BaseController, :set_mins
+  end
+
 
   # Other scopes may use custom stacks.
   # scope "/api", PomodexWeb do

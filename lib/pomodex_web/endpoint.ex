@@ -7,7 +7,7 @@ defmodule PomodexWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_pomodex_key",
-    signing_salt: "WPRDF1Qk"
+    signing_salt: "28Zcwzd2"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]

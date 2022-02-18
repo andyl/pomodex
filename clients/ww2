@@ -1,0 +1,44 @@
+#!/usr/bin/env elixir
+
+Mix.install([
+  {:websockex, "~> 0.4"}
+])
+
+defmodule SockTst do
+  use WebSockex
+
+  def start_link() do
+    url = "ws://localhost:4000/sock/echo"
+    WebSockex.start_link(url, __MODULE__, [])
+  end
+
+  def send(pid, message) do 
+    GenServer.cast(pid, {:send, {:text, message}}) |> IO.inspect(label: "SEND")
+  end
+
+  def handle_frame({type, msg}, state) do
+    IO.puts "Received Message - Type: #{inspect type} -- Message: #{inspect msg}"
+    {:ok, state}
+  end
+
+  def handle_cast({:send, {type, msg} = frame}, state) do
+    IO.puts "Sending #{type} frame with payload: #{msg}"
+    {:reply, frame, state}
+  end
+
+  def handle_info(data, state) do 
+    IO.inspect(data, label: "INFO")
+    {:noreply, state} 
+  end
+
+end
+
+IO.puts "START"
+
+{:ok, pid} = SockTst.start_link() |> IO.inspect(label: "START_LINK")
+
+SockTst.send(pid, "HELLO WORLD")
+
+Process.sleep(1000)
+
+IO.puts "DONE"
