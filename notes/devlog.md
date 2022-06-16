@@ -2,6 +2,11 @@
 
 ## Roadmap
 
+Domo 
+- [ ] umbrella phoenix app 
+- [ ] milligram CSS / `phoenix_live_editable`
+- [ ] accounts & auth 
+
 Basics
 - [ ] Underline on date boundaries 
 - [ ] Add colored favicons (green, yellow, magenta, red)
@@ -21,6 +26,11 @@ Websocket Demos
 Analytics & Invoicing
 - [ ] Add analytics
 - [ ] Add invoice generation
+
+CLI 
+- [ ] Elixir Client with `phoenix_gen_socket_client` 
+- [ ] Add websocket server with token auth 
+- [ ] Websocket Clients: Ruby, JS, Elixir 
 
 Apps
 - [ ] Create Flutter Mobile App 
@@ -65,5 +75,4 @@ Learnings
 - [ ] Get tests for counter working 
 - [ ] Remove V1
 - [ ] Remove termato 
-
 
